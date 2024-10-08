@@ -39,8 +39,12 @@ class Ball:
     def update(self):
         self.y += self.speed * self.dir
 
-        if self.y <= 70:
-            self.speed = 0
+        if self.is_small:
+            if self.y <= (90 - 25):
+                self.speed = 0
+        else:
+            if self.y <= (90 - 35):
+                self.speed = 0
     def draw(self):
         if self.is_small:
             self.image.draw(self.x,self.y,20,20)
@@ -80,7 +84,7 @@ def reset_world():
     global running
     global grass
     global player
-    #global team
+    global team
     global world
     global balls
 
@@ -96,8 +100,8 @@ def reset_world():
     player = Player() # 플레이어 생성
     world.append(player)
 
-   # team = [Player() for i in range(11)]
-    #world += team
+    team = [Player() for i in range(11)]
+    world += team
 
 def update_world():
     for o in world:
